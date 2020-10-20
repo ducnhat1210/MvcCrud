@@ -1,0 +1,109 @@
+﻿@model StrartCRUD.Models.Customer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowAll</title>
+</head>
+<body>
+    <h2 class=" container-fluid bg-primary text-white text-center" style="margin:0; padding:30px">Danh sách</h2>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div class="row" style="margin:20px">
+        <div class="col-6 col-lg-3 text-center">
+            @*<h2 style="text-align:center"></h2>*@
+            <p>
+                @*<p style="text-align:center">*@
+                @Html.ActionLink(linkText: "List Customer", actionName: "ShowAll", controllerName: "Customer")
+            <p>
+                @Html.ActionLink(linkText: "New Customer", actionName: "InsertCustomer", controllerName: "Customer")
+            </p>
+        </div>
+        <div class="col-12 col-lg-8">
+            <table class="table">
+                <tr>
+                    <th scope="col" style="background-color:wheat;color:black">
+                        @Html.DisplayNameFor(model => model.Name)
+
+                    </th>
+                    <th scope="col" style="background-color: wheat;color: black">
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th scope="col" style="background-color: wheat;color: black">
+                        @Html.DisplayNameFor(model => model.Mobileno)
+                    </th>
+                    <th style="background-color: wheat;color: black">
+                        @Html.DisplayNameFor(model => model.Birthdate)
+                    </th>
+                    <th scope="col" style="background-color: wheat;color: black">
+                        @Html.DisplayNameFor(model => model.EmailID)
+                    </th>
+                    <th scope="col" style="background-color: wheat;color: black">
+                        Operation
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.ShowallCustomer)
+                {
+                    <tr>
+                        <td scope="row">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobileno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Birthdate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailID)
+                        </td>
+                        <td>
+
+                            @Html.ActionLink("Update", "Update", new { id = item.CustomerID }) |
+
+                            @Html.ActionLink("Detail", "Detail", new { id = item.CustomerID }) |
+
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID},
+                            new { onclick = "return confirm('Are sure wants to delete?');" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    @if (TempData["result1"] != null)
+    {
+        <script type="text/javascript">
+
+            alert("Record Is Inserted Successfully");
+        </script>
+    }
+    @if (TempData["result2"] != null)
+    {
+        <script type="text/javascript">
+
+            alert("Record Is Updated Successfully");
+        </script>
+    }
+    @if (TempData["result3"] != null)
+    {
+        <script type="text/javascript">
+
+            alert("Record Is Deleted Successfully");
+        </script>
+    }
+</body>
+</html>

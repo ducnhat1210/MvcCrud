@@ -1,0 +1,86 @@
+﻿@model StrartCRUD.Models.Customer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>InsertCustomer</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <h2 class=" container-fluid bg-primary text-white text-center" style="margin:0; padding:30px">Add customer</h2>
+    <div class="row" style="margin:20px">
+        <div class="col-6 col-lg-3 text-center">
+            @*<h2 style="text-align:center"></h2>*@
+            <p>
+                @*<p style="text-align:center">*@
+                @Html.ActionLink(linkText: "List Customer", actionName: "ShowAll", controllerName: "Customer")
+            <p>
+                @Html.ActionLink(linkText: "New Customer", actionName: "InsertCustomer", controllerName: "Customer")
+            </p>
+        </div>
+        <div class="col-12 col-lg-9">
+            @using (Html.BeginForm())
+            {
+
+                @Html.ValidationSummary(true)
+            <fieldset>
+                <legend style="font-family:Arial Black;color:Green">Customer</legend>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Tên</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model=>model.Name, new { @Class = "form-control", @Placeholder = "Name" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label">Địa chỉ</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model => model.Address, new { @Class = "form-control", @Placeholder = "Address" })
+                        @Html.ValidationMessageFor(model => model.Address)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputMobi" class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model => model.Mobileno, new { @Class = "form-control", @Placeholder = "SDT" })
+                        @Html.ValidationMessageFor(model => model.Mobileno)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputDate" class="col-sm-2 col-form-label">Ngày sinh</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model => model.Birthdate, new { @Class = "form-control", @Placeholder = "Birthday" })
+                        @Html.ValidationMessageFor(model => model.Birthdate)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model => model.EmailID, new { @Class = "form-control", @Placeholder = "Email"})
+                        @Html.ValidationMessageFor(model => model.EmailID)
+                    </div>
+                </div>
+                <p></p>
+                <p>
+                    <input type="submit" value="Insert" class="btn btn-success" />
+                </p>
+
+
+            </fieldset>
+            }
+            <div style="color:Blue;font-family:Arial">
+                @Html.ActionLink("Back", "ShowAll")
+            </div>
+        </div>
+    </div>
+</body>
+</html>
